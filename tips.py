@@ -8,8 +8,8 @@ import scipy.io
 # Import dataset from url
 from urllib.request import urlretrieve
 url = 'https://assets.datacamp.com/production/course_2023/datasets/tips.csv'
-urlretrieve(url, 'dob_job_application_filings_subset.csv')
-file = 'dob_job_application_filings_subset.csv'
+# urlretrieve(url, 'dob_job_application_filings_subset.csv')
+# file = 'dob_job_application_filings_subset.csv'
 # # Use BeautifulSoup to print html of datacamp dataset
 # from bs4 import BeautifulSoup
 # import requests
@@ -19,7 +19,7 @@ file = 'dob_job_application_filings_subset.csv'
 # print(soup.prettify())
 
 # Create DataFrame
-df = pd.read_csv(file, sep = ',', dtype=None, low_memory = False)
+df = pd.read_csv(url, sep = ',', dtype=None, low_memory = False)
 print(df.head())
 print(df.tail())
 print(df.info())
