@@ -1,5 +1,4 @@
 # Import all packages
-# export PATH="/usr/local/opt/python/libexec/bin:"
 import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt
@@ -31,5 +30,10 @@ import re
 pattern = re.compile('^\d{3}-\d{3}-\d{4}$')
 
 # Check pattern against examples
-result = pattern.match('123-456-78490')
+result = pattern.match('123-456-8490')
 print(bool(result))
+
+# Create regex practice expression and match attempts
+pattern2 = re.compile('^\$\d{2}\.\d{2}$')
+result2 = pattern2.match('$24.41')
+print(bool(result2))
