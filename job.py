@@ -22,7 +22,7 @@ url = 'https://assets.datacamp.com/production/course_2023/datasets/dob_job_appli
 df = pd.read_csv(url, sep = ',', dtype=None, low_memory = False)
 df = df[['Job #', 'Doc #', 'Borough', 'Initial Cost', 'Total Est. Fee']]
 print(df.head())
-print(df.tail())
+# print(df.tail())
 print(df.info())
 print(df.describe())
 
@@ -31,20 +31,16 @@ import re
 from numpy import NaN
 pattern = re.compile('\$\d*\.\d{2}')
 
-def pattern_checker(df, key) :
-	for key, value in df:
-		if bool(pattern.match(value)):
-			value = value.replace('$', '')
-			df[key] = value
-		else: 
-			raise ValueError('Getting a non matching value')
+for k,v in df.items():
+	if df.contains('$'):
+		df[k].replace('$', '')
+	else:
+		raise ValueError('Error')
+	
 
-	return df
-
-pattern_checker(df, 'Initial Cost')
-print(df['Initial Cost'].head())
-
-
+# pattern_checker(df, 'Initial Cost')
+# print(df['Initial Cost'].head())
+print(df.head())
 
 
 
