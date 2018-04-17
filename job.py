@@ -24,23 +24,35 @@ df = df[['Job #', 'Doc #', 'Borough', 'Initial Cost', 'Total Est. Fee']]
 print(df.head())
 # print(df.tail())
 print(df.info())
-print(df.describe())
+# print(df.describe())
+
+# Create sub DataFrame
+df_sub = df[:][0:15]
 
 # Check Initial Cost and Total Est Fee 
 import re
 from numpy import NaN
 pattern = re.compile('\$\d*\.\d{2}')
 
-for k,v in df.items():
-	if df.contains('$'):
-		df[k].replace('$', '')
-	else:
-		raise ValueError('Error')
-	
+def diff_checker(row, pattern):
+	icost = row['Initial Cost']
+	tef = row['Total Est. Fee']
 
-# pattern_checker(df, 'Initial Cost')
-# print(df['Initial Cost'].head())
-print(df.head())
+	if bool(pattern.match(icost)) and bool(pattern.match(tef)):
+		icost = float(icost.replace('$', ''))
+		tef = float(tef.replace('$', ''))
+		return icost - tef
+	else:
+		return (NaN)
+
+df_sub['diff'] = df_sub.apply(diff_checker, axis=1, pattern=pattern)
+print(df_sub.head())
+
+
+
+
+
+
 
 
 
