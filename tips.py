@@ -20,15 +20,15 @@ url = 'https://assets.datacamp.com/production/course_2023/datasets/tips.csv'
 
 # Create DataFrame
 df = pd.read_csv(url, sep = ',', dtype=None, low_memory = False)
-print(df.head())
-print(df.tail())
-print(df.info())
-print(df['sex'].describe())
+# print(df.head())
+# print(df.tail())
+# print(df.info())
+# print(df['sex'].describe())
 
 # Change datatype of sex to category for categorical variable
 df['sex'] = df['sex'].astype('category')
-print(df.head())
-print(df.info())
+# print(df.head())
+# print(df.info())
 
 
 # Your job is to write a function that will recode 
@@ -48,7 +48,26 @@ def recode_resend(sex_value):
 
 
 df['sex_recode'] = df['sex'].apply(recode_resend)
+# print(df.head())
+
+# Create total_dollar column
+df['total_dollar'] = df['total_bill'].apply(lambda x: '$' + str(x))
+# print(df.head())
+
+# Remove $ from total_dollar column using .replace and regex
+import re 
+df['total_dollar_replace'] = df['total_dollar'].apply(lambda x: x.replace('$', ''))
+# print(df.head())
+
+df['total_dollar_re'] = df['total_dollar'].apply(lambda x: re.findall('\d+\.\d+', x)[0])
 print(df.head())
+
+
+
+
+
+
+
 
 
 
