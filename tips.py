@@ -27,4 +27,43 @@ print(df['sex'].describe())
 
 # Change datatype of sex to category for categorical variable
 df['sex'] = df['sex'].astype('category')
-print(df['sex'].describe())
+print(df.head())
+print(df.info())
+
+
+# Your job is to write a function that will recode 
+# 'Male' to 1, 'Female' to 0, and return np.nan for 
+# all entries of 'sex' that are neither 'Male' nor 'Female'
+
+
+
+def recode_resend(sex_value):
+	""" Recodes Male to 1 and Female to 0, NaN for neither """
+	if sex_value == 'Male':
+		return 1
+	elif sex_value == 'Female':
+		return 0
+	else:
+		return np.nan
+
+
+df['sex_recode'] = df['sex'].apply(recode_resend)
+print(df.head())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
