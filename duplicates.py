@@ -12,12 +12,12 @@ dupes = {'name': ['Daniel', 'John', 'Jane', 'Daniel'],
 		'treat_b': [42, 31, 27, 42]}
 
 df = pd.DataFrame(data=dupes)
-print(df.head())
+# print(df.head())
 
 # Remove duplicate using .drop_duplicates() method
 
 df = df.drop_duplicates()
-print(df)
+# print(df)
 
 # Import tips dataset and practice missing data
 # Import dataset from url
@@ -32,10 +32,10 @@ df_tips_sub['tip'][3] = np.nan
 df_tips_sub['sex'][4] = np.nan
 df_tips_sub['smoker'][4] = np.nan
 df_tips_sub['time'][4] = np.nan
-print(df_tips_sub.head())
+# print(df_tips_sub.head())
 # print(df_tips_sub.info())
 
-# # Use .dropna() method to drop all ros with NaN
+# # Use .dropna() method to drop all rows with NaN
 # df_tips_sub_drop = df_tips_sub.dropna()
 # print(df_tips_sub_drop)
 
@@ -45,9 +45,11 @@ df_tips_sub['total_bill'] = df_tips_sub['total_bill'].fillna(np.mean(df_tips_sub
 df_tips_sub['sex'] = df_tips_sub['sex'].fillna('missing')
 print(df_tips_sub)
 
-# Write assert statement to check for missing data
-assert df_tips_sub.day.notnull().all()
+# Write assert statement to check for missing data in smoker
+assert pd.notnull(df_tips_sub['smoker']).all()
 
+# Write assert statement to check for missing data in all columns
+assert pd.notnull(df_tips_sub).all().all()
 
 
 
